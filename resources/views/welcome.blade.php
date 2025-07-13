@@ -75,21 +75,19 @@
                 @foreach ($artikels as $item)
                     <div class="col-lg-4 py-3">
                         <div class="card border-0">
-                            <img src="{{ asset('storage/artikel/' . $item->image) }}" class="img-fluid mb-3"
-                                data-aos="zoom-in" alt="">
+                            <img src="{{ $item->image }}" class="img-fluid mb-3" data-aos="zoom-in" alt="">
                             <div class="konten-berita" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
-                                <p class="mb-3 text-secondary">{{ $item->create_at }}</p>
+                                <p class="mb-3 text-secondary">{{ $item->created_at }}</p>
                                 <h4 class="fw-bold mb-3">{{ $item->judul }}</h4>
                                 <p class="text-secondary">#AmbalanMilenium</p>
-                                <a href="/detail/{{ $item->slug }}"
-                                    class="text-decoration-none text-danger">Selengkapnya</a>
+                                <a href="/detail/{{ $item->slug }}" class="text-decoration-none text-danger">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
                 @endforeach
             </div>
             <div class="footer-berita text-center mb-5" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
-                <a href="/berita" class="btn btn-outline-danger ">Program Lainnya</a>
+                <a href="/berita" class="btn btn-outline-danger">Program Lainnya</a>
             </div>
         </div>
     </section>
@@ -97,8 +95,7 @@
     {{-- Dokumentasi  Foto --}}
     <section id="foto" class="section-foto">
         <div class="container py-5 mt-5">
-            <div class="header-dokumentasi text-center text-black py-3" data-aos="fade-up"
-                data-aos-anchor-placement="center-bottom">
+            <div class="header-dokumentasi text-center text-black py-3" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
                 <h2 class="fw-bold text-dark">Dokumentasi Pramuka Ambalan Milenium</h2>
             </div>
             <div class="d-flex justify-content-between align-items-center py-3">
@@ -113,8 +110,8 @@
             <div class="row mb-5">
                 @foreach ($photos as $photo)
                     <div class="col-lg-3 col-md-6 col-6 mb-4" data-aos="zoom-in">
-                        <a class="image-link" href="{{ asset('storage/photo/' . $photo->image) }}">
-                            <img src="{{ asset('storage/photo/' . $photo->image) }}" class="img-fluid" alt="">
+                        <a class="image-link" href="{{ $photo->image }}">
+                            <img src="{{ $photo->image }}" class="img-fluid" alt="">
                         </a>
                     </div>
                 @endforeach

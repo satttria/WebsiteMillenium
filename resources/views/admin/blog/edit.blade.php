@@ -30,7 +30,7 @@
                     <label for="">Pilih Foto Kegiatan</label>
                     <input type="hidden" name="old_image" value="{{ $artikel->image }}">
                     <div>
-                        <img src="{{ asset('storage/artikel/' . $artikel->image) }}" class="col-lg-4">
+                        <img src="{{ $artikel->image }}" class="col-lg-4">
                     </div>
                     <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
 

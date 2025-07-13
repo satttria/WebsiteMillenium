@@ -11,7 +11,7 @@
                 @foreach ($artikels as $item)
                     <div class="col-lg-4 py-3">
                         <div class="card border-0">
-                            <img src="{{ asset('storage/artikel/' . $item->image) }}" class="img-fluid mb-3" data-aos="fade-up"
+                            <img src="{{ $item->image }}" class="img-fluid mb-3" data-aos="fade-up"
                                 data-aos-anchor-placement="center-bottom" alt="">
                             <div class="konten-berita" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
                                 <p class="mb-2 text-secondary">{{ $item->create_at }}</p>

@@ -7,7 +7,7 @@
             <div class="d-flex mb-3">
                 <a href="/">Home</a> / <a href="/berita">Berita</a> / Rapat Kerja Pramuka Ambalan Milenium
             </div>
-            <img src="{{ asset('storage/artikel/' . $artikel->image) }}" class="img-fluid mb-3" alt="">
+            <img src="{{ $artikel->image }}" class="img-fluid mb-3" alt="">
             <div class="konten-berita">
                 <p class="mb-3 text-secondary">{{ $artikel->create_at }}</p>
                 <h4 class="fw-bold mb-3">{{ $artikel->judul }}</h4>
