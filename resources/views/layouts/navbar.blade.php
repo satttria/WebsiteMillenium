@@ -56,10 +56,9 @@
                             <button class="btn btn-danger" type="submit">Logout</button>
                         </form action="/login" method="POST">
                     @else
-                        <button class="btn btn-danger" type="submit">Register</button>
+                            <a href="/login" class="btn btn-danger">Login</a>
                     @endauth
                 </div>
-
             </div>
         </div>
     </nav>

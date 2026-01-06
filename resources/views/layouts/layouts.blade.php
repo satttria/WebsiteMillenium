@@ -2,6 +2,205 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
+    <style>
+        /* Animasi underline untuk link Selengkapnya */
+        .underline-animate {
+            position: relative;
+            color: #dc3545;
+            /* warna text-danger */
+            text-decoration: none;
+            overflow: hidden;
+        }
+
+        .underline-animate::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: #dc3545;
+            transition: width 0.3s ease;
+        }
+
+        .underline-animate:hover::after {
+            width: 100%;
+        }
+    </style>
+
+    <style>
+        /* bungkus gambar agar animasi rapi */
+        .img-wrapper {
+            overflow: hidden;
+            border-radius: 0.75rem;
+            /* sudut melengkung */
+        }
+
+        .img-wrapper img {
+            display: block;
+            transition: transform 0.4s ease, filter 0.4s ease;
+            transform-origin: center center;
+        }
+
+        /* efek shrink (mengecil) */
+        .img-wrapper:hover img {
+            transform: scale(0.95);
+            filter: brightness(0.9);
+        }
+
+        /* kalau mau efek zoom-in ganti dengan ini:
+  .img-wrapper:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.9);
+  } */
+    </style>
+
+    <style>
+        .slider {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+        }
+
+        .slide-track {
+            display: flex;
+            width: calc(250px * 20);
+            /* 20 = jumlah foto x 2 (karena duplikat) */
+            animation: scroll 40s linear infinite;
+        }
+
+        .slide {
+            width: 250px;
+            margin: 0 15px;
+            flex-shrink: 0;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 1rem;
+            /* sudut melengkung */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .tree {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .tree ul {
+            padding-top: 20px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tree li {
+            list-style-type: none;
+            text-align: center;
+            position: relative;
+            padding: 20px 5px 0 5px;
+        }
+
+        /* Garis penghubung antar node */
+        .tree li::before,
+        .tree li::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 50%;
+            border-top: 2px solid #ccc;
+            width: 50%;
+            height: 20px;
+        }
+
+        .tree li::after {
+            right: auto;
+            left: 50%;
+            border-left: 2px solid #ccc;
+        }
+
+        .tree li:only-child::after,
+        .tree li:only-child::before {
+            display: none;
+        }
+
+        .tree li:only-child {
+            padding-top: 0;
+        }
+
+        .tree li:first-child::before,
+        .tree li:last-child::after {
+            border: 0 none;
+        }
+
+        .tree li:last-child::before {
+            border-right: 2px solid #ccc;
+            border-radius: 0 5px 0 0;
+        }
+
+        .tree li:first-child::after {
+            border-radius: 5px 0 0 0;
+        }
+
+        /* Card styling */
+        .member-card {
+            background: #fff;
+            display: inline-block;
+            padding: 15px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            width: 180px;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .member-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            border: 3px solid #0d6efd;
+        }
+
+        .member-card h6 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .member-card p {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin: 0;
+        }
+    </style> --}}
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -41,6 +240,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/magnific.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+
+    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
 
     <style>
         html {
@@ -213,31 +415,31 @@
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() ){
-                    function smoothScroll(id) {
-                        const el = document.getElementById(id);
-                        if (el) {
-                            el.scrollIntoView({
-                                behavior: "smooth"
-                            });
-                        }
-                    }
-
-                    if (window.location.pathname === "/") {
-                        document.getElementById("home-link")?.addEventListener("click", function(e) {
-                            e.preventDefault();
-                            smoothScroll("hero");
-                        });
-                        document.getElementById("berita-link")?.addEventListener("click", function(e) {
-                            e.preventDefault();
-                            smoothScroll("berita");
-                        });
-                        document.getElementById("foto-link")?.addEventListener("click", function(e) {
-                            e.preventDefault();
-                            smoothScroll("foto");
-                        });
-                    }
+        document.addEventListener("DOMContentLoaded", function()) {
+            function smoothScroll(id) {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.scrollIntoView({
+                        behavior: "smooth"
+                    });
                 }
+            }
+
+            if (window.location.pathname === "/") {
+                document.getElementById("home-link")?.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    smoothScroll("hero");
+                });
+                document.getElementById("berita-link")?.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    smoothScroll("berita");
+                });
+                document.getElementById("foto-link")?.addEventListener("click", function(e) {
+                    e.preventDefault();
+                    smoothScroll("foto");
+                });
+            }
+        }
     </script>
 
 

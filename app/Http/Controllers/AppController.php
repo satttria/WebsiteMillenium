@@ -12,7 +12,7 @@ class AppController extends Controller
     {
         return view('welcome', [
             'artikels' => Blog::orderBy('id', 'desc')->limit(3)->get(),
-            'photos' => Photo::orderBy('id', 'desc')->limit(4)->get(),
+            'photos' => Photo::orderBy('id', 'desc')->limit(8)->get(),
         ]);
     }
 
